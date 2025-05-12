@@ -1,0 +1,56 @@
+.video {
+  width: 100%;
+  height: 80vh;
+  margin: 10px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+}
+.videoAn {
+   width:-webkit-fill-available; 
+  height: 200px;
+  margin: 10px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+}
+#remote{
+    button{
+        padding: 5px 8px !important;
+    }
+}
+.scrollList{
+  height: 100vh;
+  .remote-videos{
+        height: 100%;
+    overflow-x: hidden;
+  }
+}
+.controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #1a1a1a;
+      color: white;
+      cursor: pointer;
+      i{
+        font-size: 20px;
+      }
+      &:hover {
+        background: #333;
+      }
+    }
+  }
+  .closeMeeting{
+    background: #ea3b3b !important;
+  }
+  .bi-telephone-fill::before {
+    transform: rotateZ(133deg);
+    font-size: 25px;
+    color: white;
+  }
+

@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- Local Video -->
+    <div class="col-12 col-md-6 col-lg-9">
+      <video #myVideo autoplay muted class="video"></video>
+      <div class="controls">
+        <button (click)="toggleMic('local')">
+          <i [ngClass]="isMicMuted ? 'bi bi-mic-mute' : 'bi bi-mic'"></i>
+        </button>
+
+        <button (click)="toggleVideo('local')">
+          <i [ngClass]="isVideoMuted ? 'bi bi-camera-video-off' : 'bi bi-camera-video'"></i>
+        </button>
+
+        <button (click)="shareScreen('local')">🖥️ Share</button>
+        <button (click)="copyLink()">🔗 Copy Link</button>
+        <button class="closeMeeting" (click)="closeMeeting()">
+          <i class="bi bi-telephone-fill"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Remote Videos -->
+    <div class="col-12 col-md-6 col-lg-3 scrollList">
+      <div class="remote-videos">
+        <ng-container *ngFor="let remote of remoteStreams">
+          <video [srcObject]="remote.stream" autoplay class="videoAn"></video>
+         
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

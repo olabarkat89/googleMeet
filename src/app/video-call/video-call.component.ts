@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SignalingService } from '../services/signaling.service';
 import { WebRTCService } from '../services/webrtc.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { io } from 'socket.io-client';
+
 
 @Component({
   selector: 'app-video-call',
@@ -36,20 +36,20 @@ export class VideoCallComponent  {
   this.myVideo.nativeElement.srcObject = this.localStream;
 
   // قراءة الإعدادات من localStorage
-  const muteMic = localStorage.getItem('isMicMuted') === 'true';
-  const muteVideo = localStorage.getItem('isVideoMuted') === 'true';
+  // const muteMic = localStorage.getItem('isMicMuted') === 'true';
+  // const muteVideo = localStorage.getItem('isVideoMuted') === 'true';
 
   // تطبيق كتم الصوت والصورة حسب القيمة المخزنة
-  this.localStream.getAudioTracks().forEach(track => {
-    track.enabled = !muteMic;
-  });
+  // this.localStream.getAudioTracks().forEach(track => {
+  //   track.enabled = !muteMic;
+  // });
 
-  this.localStream.getVideoTracks().forEach(track => {
-    track.enabled = !muteVideo;
-  });
+  // this.localStream.getVideoTracks().forEach(track => {
+  //   track.enabled = !muteVideo;
+  // });
 
-  this.isMicMuted = muteMic;
-  this.isVideoMuted = muteVideo;
+  // this.isMicMuted = muteMic;
+  // this.isVideoMuted = muteVideo;
 
     // Get local camera and mic stream
     // this.localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });

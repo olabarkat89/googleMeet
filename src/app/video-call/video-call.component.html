@@ -2,7 +2,7 @@
   <div class="row">
     <!-- Local Video -->
     <div class="col-12 col-md-6 col-lg-9">
-      <video #myVideo autoplay muted class="video"></video>
+      <video #myVideo autoplay muted playsinline class="video"></video>
       <div class="controls">
         <button (click)="toggleMic('local')">
           <i [ngClass]="isMicMuted ? 'bi bi-mic-mute' : 'bi bi-mic'"></i>
@@ -24,7 +24,7 @@
     <div class="col-12 col-md-6 col-lg-3 scrollList">
       <div class="remote-videos">
         <ng-container *ngFor="let remote of remoteStreams">
-          <video [srcObject]="remote.stream" autoplay class="videoAn"></video>
+          <video [srcObject]="remote.stream" autoplay playsinline class="videoAn"></video>
          
         </ng-container>
       </div>

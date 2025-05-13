@@ -1,10 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { MediaServiceService } from '../services/media-service.service';
 import { CommonModule } from '@angular/common';
 import { SignalingService } from '../services/signaling.service';
 import { WebRTCService } from '../services/webrtc.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-video-call',
@@ -15,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class VideoCallComponent  {
   @ViewChild('myVideo') myVideo!: ElementRef<HTMLVideoElement>;
+@ViewChildren('remoteVideo') remoteVideoElements!: QueryList<ElementRef>;
 
   localStream!: MediaStream;
   remoteStreams: { socketId: string, stream: MediaStream, isMicMuted: boolean, isVideoMuted: boolean }[] = [];
@@ -30,7 +30,16 @@ export class VideoCallComponent  {
   ngOnInit(): void {
     this.startConnection();
   }
-
+// ngAfterViewInit() {
+//   this.remoteVideoElements.changes.subscribe(() => {
+//     this.remoteVideoElements.forEach((videoEl, index) => {
+//       if (this.remoteStreams[index]?.stream) {
+//         const nativeVideo: HTMLVideoElement = videoEl.nativeElement;
+//         nativeVideo.srcObject = this.remoteStreams[index].stream;
+//       }
+//     });
+//   });
+// }
   async startConnection() {
     this.localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
   this.myVideo.nativeElement.srcObject = this.localStream;
@@ -118,8 +127,8 @@ export class VideoCallComponent  {
         this.remoteStreams.push({
           socketId,
           stream: event.streams[0],
-          isMicMuted: false,
-          isVideoMuted: false,
+          isMicMuted: true,
+          isVideoMuted: true,
         });
       }
     };
@@ -152,7 +161,6 @@ export class VideoCallComponent  {
         // remote.isMicMuted = !remote.isMicMuted;
         // remote.stream.getAudioTracks().forEach(track => track.enabled = !remote.isMicMuted);
         remote.isMicMuted = !remote.isMicMuted;
-console.log("test",remote.isMicMuted)
   // Apply the mic state to the local stream
   this.localStream.getAudioTracks().forEach(track => track.enabled = !remote.isMicMuted);
 

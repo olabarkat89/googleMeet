@@ -24,8 +24,7 @@
     <div class="col-12 col-md-6 col-lg-3 scrollList">
       <div class="remote-videos">
         <ng-container *ngFor="let remote of remoteStreams">
-          <video [srcObject]="remote.stream" autoplay playsinline class="videoAn"></video>
-         
+          <video #remoteVideo [srcObject]="remote.stream" autoplay playsinline class="videoAn"></video>
         </ng-container>
       </div>
     </div>

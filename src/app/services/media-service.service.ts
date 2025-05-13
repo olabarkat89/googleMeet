@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
+import { environment } from '../../../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,11 @@ export class MediaServiceService {
   public incomingCall = new EventEmitter<void>();  // Notify when there's an incoming call
   public callAccepted = new EventEmitter<MediaStream>();  // Notify when a call is accepted
   public remoteStream = new EventEmitter<MediaStream>();  // Emit the remote video stream
-  
+    SERVER_URL: string = environment.apiUrl;
+
   constructor() {
     
-    this.socket = io('http://localhost:3000'); //Socket = IP + Port
+    this.socket = io(this.SERVER_URL); //Socket = IP + Port
     this.initializeSocketEvents();
     
    }

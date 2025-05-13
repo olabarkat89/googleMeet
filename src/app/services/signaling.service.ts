@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
+import { environment } from '../../../environment';
 
 @Injectable({ providedIn: 'root' })
 export class SignalingService {
  socket: Socket;
-  SERVER_URL = 'http://localhost:3000';
+    SERVER_URL: string = environment.apiUrl;
 
   constructor() {
     this.socket = io(this.SERVER_URL);
